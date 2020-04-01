@@ -1,0 +1,33 @@
+package test;
+import java.io.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class MultiBrowsers {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		// We ask user which In which browser he want to open GOOGLE
+		System.out.println("Which browser you want to open");
+		String str = br.readLine();
+		WebDriver driver = null ;
+		
+		if(str.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver","C:\\Program Files\\chromedriver.exe");
+			driver = new ChromeDriver();
+		}else if(str.equalsIgnoreCase("Firefox")) {
+			System.setProperty("webdriver.gecko.driver", "C:\\Program Files\\geckodriver.exe");
+			 driver = new FirefoxDriver();
+		}else {
+			System.out.println("Invalid Browser");
+			return ;
+		}
+		driver.get("http://www.google.com");
+		Thread.sleep(2000);
+		driver.close();
+	}
+
+}
